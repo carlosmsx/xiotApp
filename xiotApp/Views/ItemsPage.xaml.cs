@@ -33,7 +33,8 @@ namespace xiotApp.Views
             if (item == null)
                 return;
 
-            await Navigation.PushAsync(new ItemDetailPage(new ItemDetailViewModel(item)));
+            //await Navigation.PushAsync(new ItemDetailPage(new ItemDetailViewModel(item)));
+            await Task.Run(()=> { MessagingCenter.Send(this, "selected", item); });
 
             // Manually deselect item.
             ItemsListView.SelectedItem = null;

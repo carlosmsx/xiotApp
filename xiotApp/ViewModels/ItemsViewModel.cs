@@ -27,6 +27,12 @@ namespace xiotApp.ViewModels
                 Items.Add(newItem);
                 await DataStore.AddItemAsync(newItem);
             });
+            MessagingCenter.Subscribe<MainPage, Item>(this, "AddItem", async (obj, item) =>
+            {
+                var newItem = item as Item;
+                Items.Add(newItem);
+                await DataStore.AddItemAsync(newItem);
+            });
         }
 
         async Task ExecuteLoadItemsCommand()
